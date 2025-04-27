@@ -1,0 +1,121 @@
+@import '../collection-agency-details/collection-agency-details.component.css';
+
+.form-section {
+  text-align: left;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 2rem 0;
+}
+
+.checkbox-container input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-top: 3px;
+  accent-color: #1e3a5f;
+}
+
+.checkbox-container label {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5;
+}
+
+.btn-primary {
+  background-color: #fbc02d;
+  border: none;
+  color: #000;
+}
+
+.btn-primary:hover {
+  background-color: #f9b602;
+}
+
+.btn-primary:disabled {
+  background-color:green;
+  cursor: not-allowed;
+}
+
+.progress-bar::after {
+  width: 87.5%; /* 7 completed steps out of 8 */
+}
+
+/* Navigation buttons - update these styles */
+.btn-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e0e0e0;
+  }
+  
+  .btn {
+    min-width: 120px;
+    padding: 0.6rem 1.2rem;
+    border-radius: 5px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+  }
+  
+  .btn-back {
+    background-color: transparent;
+    color: #6c757d;
+    border: 1px solid #ced4da;
+  }
+  
+  .btn-back:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .btn-primary {
+    background-color: #1e3a5f;
+    border: 1px solid #1e3a5f;
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: green;
+  }
+  
+@media (max-width: 768px) {
+    .btn-navigation {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn {
+        min-width: 100px;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+    
+    .btn-back, .btn-primary {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+  
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 0.75rem;
+    }
+  
+    .form-container {
+      padding: 15px;
+    }
+  
+    .btn-navigation {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+    }
+  }

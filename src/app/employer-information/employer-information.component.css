@@ -41,7 +41,7 @@
   content: "";
   position: absolute;
   height: 2px;
-  width: 12.5%; /* 1/8 steps completed */
+  width: 12.5%;
   background-color: #fbc02d;
   top: 15px;
   left: 0;
@@ -199,8 +199,8 @@ select {
 
 .option-btn.selected {
   background-color: #e6f7e6;
-  border-color: #28a745;
-  color: #28a745;
+  border-color: #fbc02d;
+  color: #fbc02d;
 }
 
 .option-btn.not-selected {

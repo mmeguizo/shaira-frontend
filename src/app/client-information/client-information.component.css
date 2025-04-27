@@ -49,6 +49,18 @@ body {
     z-index: 1;
 }
 
+.progress-bar::after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 0%;
+    background-color: #fbc02d;
+    top: 15px;
+    left: 0;
+    z-index: 1;
+}
+
+
 .step {
     display: flex;
     flex-direction: column;

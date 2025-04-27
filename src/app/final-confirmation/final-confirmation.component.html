@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="header">
+    <h1>Cease-and-Desist Intake Form</h1>
+    <p>Please fill out the form below to get started. We're here to help!</p>
+  </div>
+
+  <div class="progress-bar">
+    <div class="step completed" *ngFor="let step of [1,2,3,4,5,6,7]">
+      <div class="step-number"><span></span></div>
+      <div class="step-label">{{getStepLabel(step)}}</div>
+    </div>
+    <div class="step active">
+      <div class="step-number">8</div>
+      <div class="step-label">Final Confirmation</div>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <div class="form-section">
+      <h2>Final Confirmation</h2>
+      <form [formGroup]="confirmationForm">
+        <div class="checkbox-container">
+          <input type="checkbox" id="confirmAccuracy" formControlName="confirmAccuracy">
+          <label for="confirmAccuracy">I confirm that all information provided is accurate to the best of my knowledge</label>
+        </div>
+
+        <div class="btn-navigation">
+          <button class="btn btn-back" (click)="navigateBack()">
+            <span class="icon-left">←</span> Back
+          </button>
+          <button class="btn btn-primary" (click)="submit()" [disabled]="!confirmationForm.valid">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

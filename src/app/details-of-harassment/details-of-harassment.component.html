@@ -1,0 +1,156 @@
+<div class="container">
+  <div class="header">
+    <h1>Cease-and-Desist Intake Form</h1>
+    <p>Please fill out the form below to get started. We're here to help!</p>
+  </div>
+
+  <div class="progress-bar">
+    <div class="step completed">
+      <div class="step-number"><span></span></div>
+      <div class="step-label">Client Information</div>
+    </div>
+    <div class="step completed">
+      <div class="step-number"><span></span></div>
+      <div class="step-label">Employer Information</div>
+    </div>
+    <div class="step completed">
+      <div class="step-number"><span></span></div>
+      <div class="step-label">Equifax Credit Report</div>
+    </div>
+    <div class="step completed">
+      <div class="step-number"><span></span></div>
+      <div class="step-label">Collection Agency Details</div>
+    </div>
+    <div class="step active">
+      <div class="step-number"><span>5</span></div>
+      <div class="step-label">Details of Harassment</div>
+    </div>
+    <div class="step">
+      <div class="step-number">6</div>
+      <div class="step-label">Supporting Documentation</div>
+    </div>
+    <div class="step">
+      <div class="step-number">7</div>
+      <div class="step-label">Power of Attorney</div>
+    </div>
+    <div class="step">
+      <div class="step-number">8</div>
+      <div class="step-label">Final Confirmation</div>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <div class="form-section">
+      <h2>Details of Harassment</h2>
+      <form [formGroup]="harassmentForm">
+        <div formArrayName="agencyForms">
+          <div class="agency-section" *ngFor="let agencyForm of agencyForms.controls; let i = index" [formGroupName]="i">
+            <div class="agency-header">
+              <div class="header-left">
+                <button type="button" class="btn-collapse" (click)="toggleCollapse(i)">
+                  <span class="arrow" [class.collapsed]="agencies[i].isCollapsed">▼</span>
+                </button>
+                <h3>Agency #{{i + 1}}</h3>
+              </div>
+              <button *ngIf="i > 0" type="button" class="btn-remove" (click)="removeAgency(i)">✕</button>
+            </div>
+
+            <div class="agency-content" [class.collapsed]="agencies[i].isCollapsed">
+              <!-- Agency Selection -->
+              <div class="form-group">
+                <label>Agency Name</label>
+                <div class="select-container">
+                  <select formControlName="selectedAgency">
+                    <option value="" disabled selected>Select Agency</option>
+                    <option value="agency1">Agency 1</option>
+                    <option value="agency2">Agency 2</option>
+                    <option value="agency3">Agency 3</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Contact Type -->
+              <div class="form-group">
+                <label>Frequency/Details of Contact</label>
+                <div class="select-container">
+                  <select formControlName="contactType">
+                    <option value="" disabled selected>Select Form of Contact</option>
+                    <option value="phone">Phone Calls</option>
+                    <option value="email">Emails</option>
+                    <option value="letters">Letters</option>
+                    <option value="others">Others</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Contact Details -->
+              <div class="date-time-container" formArrayName="contactDetails">
+                <div class="contact-row">
+                  <div class="contact-count"># of times</div>
+                  <div class="contact-date">Date</div>
+                  <div class="contact-time">Time</div>
+                </div>
+                <div *ngFor="let contact of getContactDetails(i).controls; let j = index" 
+                     [formGroupName]="j" 
+                     class="contact-row">
+                  <input type="number" formControlName="count" class="count-input" min="1">
+                  <input type="date" formControlName="date" class="date-input">
+                  <input type="time" formControlName="time" class="time-input">
+                  <button type="button" class="btn-add" *ngIf="j === getContactDetails(i).length - 1" 
+                          (click)="addContactDetail(i)">+</button>
+                </div>
+              </div>
+
+              <!-- Threats Section -->
+              <div class="form-group">
+                <label>Details of Any Threats or Demands Made by the Agency</label>
+                <div class="checkbox-group">
+                  <div class="checkbox-option">
+                    <input type="checkbox" [id]="'threat1-' + i" formControlName="threatToSue">
+                    <label [for]="'threat1-' + i">Did they threaten to sue you?</label>
+                  </div>
+                  <div class="checkbox-option">
+                    <input type="checkbox" [id]="'threat2-' + i" formControlName="threatToTakeHome">
+                    <label [for]="'threat2-' + i">Did they threaten to take away your home?</label>
+                  </div>
+                  <div class="checkbox-option">
+                    <input type="checkbox" [id]="'threat3-' + i" formControlName="threatWithSheriff">
+                    <label [for]="'threat3-' + i">Did they threaten you with the sheriff or judgments?</label>
+                  </div>
+                  <div class="checkbox-option">
+                    <input type="checkbox" [id]="'otherThreats-' + i" formControlName="otherThreats">
+                    <label [for]="'otherThreats-' + i">Others</label>
+                    <input 
+                      type="text" 
+                      *ngIf="agencyForm.get('otherThreats')?.value"
+                      formControlName="otherThreatsDetails"
+                      placeholder="Please Specify"
+                      class="other-input"
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add Another Form Button -->
+        <div class="btn-container">
+          <button type="button" class="btn btn-secondary" (click)="addAnotherAgency()">
+            Add Another Form of Contact
+          </button>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="btn-navigation">
+          <button type="button" class="btn btn-back" (click)="navigateBack()">
+            <span class="icon">←</span> Back
+          </button>
+          <button type="button" class="btn btn-primary" (click)="navigateNext()">
+            Next <span class="icon">→</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
