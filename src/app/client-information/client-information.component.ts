@@ -21,7 +21,7 @@ import {
 })
 export class ClientInformationComponent implements OnInit {
   faUpLong = faUpLong;
-  nations = country.sort((a, b) => a.code.localeCompare(b.code));;
+  nations = country.sort((a, b) => a.code.localeCompare(b.code));
   selectedFile: File | null = null;
 
   dateOfBirthControl = new FormControl<string>('', {
@@ -49,10 +49,7 @@ export class ClientInformationComponent implements OnInit {
     let age = today.getFullYear() - birthDate.getFullYear();
     const monthDiff = today.getMonth() - birthDate.getMonth();
 
-    if (
-      monthDiff < 0 ||
-      (monthDiff === 0 && today.getDate() < birthDate.getDate())
-    ) {
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
       age--;
     }
 
@@ -92,7 +89,7 @@ export class ClientInformationComponent implements OnInit {
   initializeCountryCodeSelect() {
     const select = document.querySelector('.country-code select');
     if (select) {
-      select.addEventListener('change', (event) => {
+      select.addEventListener('change', event => {
         const selectedOption = (event.target as HTMLSelectElement).options[
           (event.target as HTMLSelectElement).selectedIndex
         ];

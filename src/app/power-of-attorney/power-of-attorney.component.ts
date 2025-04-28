@@ -9,13 +9,16 @@ import country from '../client-information/flags.json';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './power-of-attorney.component.html',
-  styleUrls: ['./power-of-attorney.component.css']
+  styleUrls: ['./power-of-attorney.component.css'],
 })
 export class PowerOfAttorneyComponent implements OnInit {
   poaForm!: FormGroup;
   countries = country;
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -29,7 +32,7 @@ export class PowerOfAttorneyComponent implements OnInit {
         countryCode: ['US'],
         phoneNumber: [''],
         email: ['', [Validators.email]],
-        relationship: ['']
+        relationship: [''],
       }),
       nextOfKin: this.fb.group({
         fullName: ['', Validators.required],
@@ -42,8 +45,8 @@ export class PowerOfAttorneyComponent implements OnInit {
         city: ['', Validators.required],
         state: ['', Validators.required],
         country: ['', Validators.required],
-        zipCode: ['', [Validators.required, Validators.pattern('^[0-9]{5}(?:-[0-9]{4})?$')]]
-      })
+        zipCode: ['', [Validators.required, Validators.pattern('^[0-9]{5}(?:-[0-9]{4})?$')]],
+      }),
     });
 
     this.setupPoaValidation();
@@ -80,7 +83,7 @@ export class PowerOfAttorneyComponent implements OnInit {
       5: 'Details of Harassment',
       6: 'Supporting Documentation',
       7: 'Power of Attorney',
-      8: 'Final Confirmation'
+      8: 'Final Confirmation',
     };
     return steps[step as keyof typeof steps];
   }

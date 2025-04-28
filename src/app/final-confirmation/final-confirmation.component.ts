@@ -8,10 +8,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './final-confirmation.component.html',
   styleUrls: ['./final-confirmation.component.css'],
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule
-  ]
+  imports: [CommonModule, ReactiveFormsModule],
 })
 export class FinalConfirmationComponent {
   confirmationForm: FormGroup;
@@ -21,7 +18,7 @@ export class FinalConfirmationComponent {
     private router: Router
   ) {
     this.confirmationForm = this.fb.group({
-      confirmAccuracy: [false, Validators.requiredTrue]
+      confirmAccuracy: [false, Validators.requiredTrue],
     });
   }
 
@@ -33,7 +30,7 @@ export class FinalConfirmationComponent {
       4: 'Collection Agency Details',
       5: 'Details of Harassment',
       6: 'Supporting Documentation',
-      7: 'Power of Attorney'
+      7: 'Power of Attorney',
     };
     return labels[step as keyof typeof labels];
   }

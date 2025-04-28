@@ -62,15 +62,18 @@
         <div class="form-group">
           <label>Date of Birth <span class="required">*</span></label>
           <div class="date-input">
-            <input 
-              type="date" 
+            <input
+              type="date"
               [max]="maxDate"
               required
               (change)="onDateChange($event)"
               [formControl]="dateOfBirthControl"
             />
           </div>
-          <small class="error-message" *ngIf="dateOfBirthControl.errors?.['underage'] && dateOfBirthControl.touched">
+          <small
+            class="error-message"
+            *ngIf="dateOfBirthControl.errors?.['underage'] && dateOfBirthControl.touched"
+          >
             Must be at least 18 years old
           </small>
         </div>
@@ -79,20 +82,25 @@
           <div class="phone-input">
             <div class="country-code">
               <select
-              style="
-                width: 140px;
-                padding: 8px 4px;
-                border-radius: 6px;
-                border: 1px solid #cfd8dc;
-                background: #f8fafc;
-              "
-            >
-              @for (nation of nations; track nation.name) {
-              <option [value]="nation.name" style="background-image: url('http://purecatamphetamine.github.io/country-flag-icons/3x2/US.svg')">
-               {{nation.code | uppercase}} {{nation.dial_code}}
-              </option>
-              }
-            </select>
+                style="
+                  width: 140px;
+                  padding: 8px 4px;
+                  border-radius: 6px;
+                  border: 1px solid #cfd8dc;
+                  background: #f8fafc;
+                "
+              >
+                @for (nation of nations; track nation.name) {
+                  <option
+                    [value]="nation.name"
+                    style="
+                      background-image: url('http://purecatamphetamine.github.io/country-flag-icons/3x2/US.svg');
+                    "
+                  >
+                    {{ nation.code | uppercase }} {{ nation.dial_code }}
+                  </option>
+                }
+              </select>
             </div>
             <input type="tel" required placeholder="Phone number" />
           </div>
@@ -133,15 +141,22 @@
 
       <div class="form-row">
         <div class="form-group">
-          <label>Attach ID <span class="required">*</span>
-            <small>(e.g. Passport, Driver's License)</small></label>
-          <div class="file-upload" (click)="fileInput.click()" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
-            <input 
-              type="file" 
-              #fileInput 
-              style="display: none;" 
+          <label
+            >Attach ID <span class="required">*</span>
+            <small>(e.g. Passport, Driver's License)</small></label
+          >
+          <div
+            class="file-upload"
+            (click)="fileInput.click()"
+            (dragover)="onDragOver($event)"
+            (drop)="onDrop($event)"
+          >
+            <input
+              type="file"
+              #fileInput
+              style="display: none"
               (change)="onFileSelected($event)"
-              accept=".pdf,.jpg,.jpeg,.png,.gif,.txt,.doc,.docx" 
+              accept=".pdf,.jpg,.jpeg,.png,.gif,.txt,.doc,.docx"
               required
             />
             <p *ngIf="!selectedFile">Choose a file or drag and drop it here</p>
@@ -156,9 +171,7 @@
       </div>
 
       <div class="btn-container">
-        <button class="btn btn-primary" (click)="navigateToEmployerInfo()">
-          Next ➔
-        </button>
+        <button class="btn btn-primary" (click)="navigateToEmployerInfo()">Next ➔</button>
       </div>
     </div>
   </div>

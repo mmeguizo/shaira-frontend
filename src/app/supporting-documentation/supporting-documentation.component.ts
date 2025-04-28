@@ -10,13 +10,16 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, FontAwesomeModule],
   templateUrl: './supporting-documentation.component.html',
-  styleUrls: ['./supporting-documentation.component.css']
+  styleUrls: ['./supporting-documentation.component.css'],
 })
 export class SupportingDocumentationComponent implements OnInit {
   documentationForm!: FormGroup;
   selectedFiles: File[] = [];
   faUpLong = faUpLong;
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router
+  ) {
     this.initForm();
   }
 
@@ -26,7 +29,7 @@ export class SupportingDocumentationComponent implements OnInit {
       emailsLetters: [false],
       voicemail: [false],
       otherEvidence: [false],
-      otherEvidenceDetails: ['']
+      otherEvidenceDetails: [''],
     });
   }
 
@@ -39,7 +42,7 @@ export class SupportingDocumentationComponent implements OnInit {
       5: 'Details of Harassment',
       6: 'Supporting Documentation',
       7: 'Power of Attorney',
-      8: 'Final Confirmation'
+      8: 'Final Confirmation',
     };
     return steps[step as keyof typeof steps];
   }
@@ -95,6 +98,5 @@ export class SupportingDocumentationComponent implements OnInit {
     // }
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

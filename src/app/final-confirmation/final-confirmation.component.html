@@ -5,9 +5,9 @@
   </div>
 
   <div class="progress-bar">
-    <div class="step completed" *ngFor="let step of [1,2,3,4,5,6,7]">
+    <div class="step completed" *ngFor="let step of [1, 2, 3, 4, 5, 6, 7]">
       <div class="step-number"><span></span></div>
-      <div class="step-label">{{getStepLabel(step)}}</div>
+      <div class="step-label">{{ getStepLabel(step) }}</div>
     </div>
     <div class="step active">
       <div class="step-number">8</div>
@@ -20,8 +20,10 @@
       <h2>Final Confirmation</h2>
       <form [formGroup]="confirmationForm">
         <div class="checkbox-container">
-          <input type="checkbox" id="confirmAccuracy" formControlName="confirmAccuracy">
-          <label for="confirmAccuracy">I confirm that all information provided is accurate to the best of my knowledge</label>
+          <input type="checkbox" id="confirmAccuracy" formControlName="confirmAccuracy" />
+          <label for="confirmAccuracy"
+            >I confirm that all information provided is accurate to the best of my knowledge</label
+          >
         </div>
 
         <div class="btn-navigation">

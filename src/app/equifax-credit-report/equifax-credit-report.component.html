@@ -1,85 +1,89 @@
 <div class="container">
-    <div class="header">
-        <h1>Cease-and-Desist Intake Form</h1>
-        <p>Please fill out the form below to get started. We're here to help!</p>
+  <div class="header">
+    <h1>Cease-and-Desist Intake Form</h1>
+    <p>Please fill out the form below to get started. We're here to help!</p>
+  </div>
+
+  <div class="progress-bar">
+    <div class="step completed">
+      <div class="step-number"><span></span></div>
+      <div class="step-label">Client Information</div>
     </div>
-    
-    <div class="progress-bar">
-        <div class="step completed">
-            <div class="step-number"><span></span></div>
-            <div class="step-label">Client Information</div>
-        </div>
-        <div class="step completed">
-            <div class="step-number"><span></span></div>
-            <div class="step-label">Employer Information</div>
-        </div>
-        <div class="step active">
-            <div class="step-number"><span>3</span></div>
-            <div class="step-label">Equifax Credit Report</div>
-        </div>
-        <div class="step">
-            <div class="step-number">4</div>
-            <div class="step-label">Collection Agency Details</div>
-        </div>
-        <div class="step">
-            <div class="step-number">5</div>
-            <div class="step-label">Details of Harassment</div>
-        </div>
-        <div class="step">
-            <div class="step-number">6</div>
-            <div class="step-label">Supporting Documentation</div>
-        </div>
-        <div class="step">
-            <div class="step-number">7</div>
-            <div class="step-label">Power of Attorney</div>
-        </div>
-        <div class="step">
-            <div class="step-number">8</div>
-            <div class="step-label">Final Confirmation</div>
-        </div>
+    <div class="step completed">
+      <div class="step-number"><span></span></div>
+      <div class="step-label">Employer Information</div>
     </div>
-    
-    <div class="form-container">
-        <div class="form-section">
-          <h2>Equifax Credit Report</h2>
-    
-          <label>Please attach a copy of your Equifax credit report (mandatory for service): <span class="required">*</span></label>
-    
-          <div class="file-upload" 
-               (click)="fileInput.click()" 
-               (dragover)="onDragOver($event)" 
-               (drop)="onDrop($event)">
-            <input 
-              type="file" 
-              #fileInput 
-              style="display: none;" 
-              (change)="onFileSelected($event)"
-              accept=".pdf,.jpg,.jpeg,.png" 
-              required
-            />
-            <p *ngIf="!selectedFile">Choose a file or drag and drop it here</p>
-            <p *ngIf="selectedFile">Selected: {{ selectedFile.name }}</p>
-            <fa-icon [icon]="faUpLong"></fa-icon>
-          </div>
-    
-          <div *ngIf="selectedFile" class="file-info">
-            <span class="file-name">{{ selectedFile.name }}</span>
-            <button type="button" class="remove-file" (click)="removeFile($event)">✕</button>
-          </div>
-    
-          <p class="note">
-            Note: If the credit report is uploaded, the system will OCR the data to identify other collection agencies contacting the client. 
-            An email will be sent to the client asking if they wish to send additional cease-and-desist letters.
-          </p>
-    
-          <div class="btn-container">
-            <button class="btn btn-secondary" (click)="goBack()">
-              <span class="icon-left">←</span> Back
-            </button>
-            <button class="btn btn-primary" (click)="goNext()">
-              Next <span class="icon">→</span>
-            </button>
-          </div>
-        </div>
+    <div class="step active">
+      <div class="step-number"><span>3</span></div>
+      <div class="step-label">Equifax Credit Report</div>
+    </div>
+    <div class="step">
+      <div class="step-number">4</div>
+      <div class="step-label">Collection Agency Details</div>
+    </div>
+    <div class="step">
+      <div class="step-number">5</div>
+      <div class="step-label">Details of Harassment</div>
+    </div>
+    <div class="step">
+      <div class="step-number">6</div>
+      <div class="step-label">Supporting Documentation</div>
+    </div>
+    <div class="step">
+      <div class="step-number">7</div>
+      <div class="step-label">Power of Attorney</div>
+    </div>
+    <div class="step">
+      <div class="step-number">8</div>
+      <div class="step-label">Final Confirmation</div>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <div class="form-section">
+      <h2>Equifax Credit Report</h2>
+
+      <label
+        >Please attach a copy of your Equifax credit report (mandatory for service):
+        <span class="required">*</span></label
+      >
+
+      <div
+        class="file-upload"
+        (click)="fileInput.click()"
+        (dragover)="onDragOver($event)"
+        (drop)="onDrop($event)"
+      >
+        <input
+          type="file"
+          #fileInput
+          style="display: none"
+          (change)="onFileSelected($event)"
+          accept=".pdf,.jpg,.jpeg,.png"
+          required
+        />
+        <p *ngIf="!selectedFile">Choose a file or drag and drop it here</p>
+        <p *ngIf="selectedFile">Selected: {{ selectedFile.name }}</p>
+        <fa-icon [icon]="faUpLong"></fa-icon>
       </div>
+
+      <div *ngIf="selectedFile" class="file-info">
+        <span class="file-name">{{ selectedFile.name }}</span>
+        <button type="button" class="remove-file" (click)="removeFile($event)">✕</button>
+      </div>
+
+      <p class="note">
+        Note: If the credit report is uploaded, the system will OCR the data to identify other
+        collection agencies contacting the client. An email will be sent to the client asking if
+        they wish to send additional cease-and-desist letters.
+      </p>
+
+      <div class="btn-container">
+        <button class="btn btn-secondary" (click)="goBack()">
+          <span class="icon-left">←</span> Back
+        </button>
+        <button class="btn btn-primary" (click)="goNext()">Next <span class="icon">→</span></button>
+      </div>
+    </div>
+  </div>
 </div>

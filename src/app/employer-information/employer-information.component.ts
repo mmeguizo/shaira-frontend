@@ -8,12 +8,12 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './employer-information.component.html',
-  styleUrls: ['./employer-information.component.css']
+  styleUrls: ['./employer-information.component.css'],
 })
 export class EmployerInformationComponent implements OnInit {
   contactedAtWork: boolean | null = null;
   maxDate: string;
-  
+
   contactTimesControl = new FormControl('');
   contactDateControl = new FormControl('');
   contactTimeControl = new FormControl('');

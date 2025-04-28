@@ -7,9 +7,9 @@
   <!-- Progress Bar (same as previous) -->
   <div class="progress-bar">
     <!-- Previous steps completed -->
-    <div class="step completed" *ngFor="let step of [1,2,3,4,5]">
+    <div class="step completed" *ngFor="let step of [1, 2, 3, 4, 5]">
       <div class="step-number"><span></span></div>
-      <div class="step-label">{{getStepLabel(step)}}</div>
+      <div class="step-label">{{ getStepLabel(step) }}</div>
     </div>
     <!-- Current step -->
     <div class="step active">
@@ -17,9 +17,9 @@
       <div class="step-label">Supporting Documentation</div>
     </div>
     <!-- Remaining steps -->
-    <div class="step" *ngFor="let step of [7,8]">
-      <div class="step-number">{{step}}</div>
-      <div class="step-label">{{getStepLabel(step)}}</div>
+    <div class="step" *ngFor="let step of [7, 8]">
+      <div class="step-number">{{ step }}</div>
+      <div class="step-label">{{ getStepLabel(step) }}</div>
     </div>
   </div>
 
@@ -31,27 +31,27 @@
           <label>Do you have any documentation of the harassment?</label>
           <div class="checkbox-group">
             <div class="checkbox-option">
-              <input type="checkbox" id="callLogs" formControlName="callLogs">
+              <input type="checkbox" id="callLogs" formControlName="callLogs" />
               <label for="callLogs">Call Logs</label>
             </div>
             <div class="checkbox-option">
-              <input type="checkbox" id="emailsLetters" formControlName="emailsLetters">
+              <input type="checkbox" id="emailsLetters" formControlName="emailsLetters" />
               <label for="emailsLetters">Emails or Letters</label>
             </div>
             <div class="checkbox-option">
-              <input type="checkbox" id="voicemail" formControlName="voicemail">
+              <input type="checkbox" id="voicemail" formControlName="voicemail" />
               <label for="voicemail">Voicemail Recordings</label>
             </div>
             <div class="checkbox-option">
-              <input type="checkbox" id="otherEvidence" formControlName="otherEvidence">
+              <input type="checkbox" id="otherEvidence" formControlName="otherEvidence" />
               <label for="otherEvidence">Other Evidence</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 *ngIf="documentationForm.get('otherEvidence')?.value"
                 formControlName="otherEvidenceDetails"
                 placeholder="Please Specify"
                 class="other-input"
-              >
+              />
             </div>
           </div>
         </div>
@@ -62,24 +62,24 @@
             <div class="upload-content">
               <!-- <img src="assets/upload-icon.svg" alt="Upload" class="upload-icon"> -->
               <p>Choose a file or Drag and Drop it here</p>
-              <input 
-                type="file" 
-                #fileInput 
-                (change)="onFileSelected($event)" 
-                multiple 
+              <input
+                type="file"
+                #fileInput
+                (change)="onFileSelected($event)"
+                multiple
                 class="file-input"
                 hidden
-              >
+              />
               <!-- <button type="button" class="btn-upload" (click)="fileInput.click()">
                 Choose Files
               </button> -->
-              <fa-icon   [icon]="faUpLong" (click)="fileInput.click()"></fa-icon>
+              <fa-icon [icon]="faUpLong" (click)="fileInput.click()"></fa-icon>
             </div>
           </div>
           <!-- File List -->
           <div class="file-list" *ngIf="selectedFiles.length > 0">
             <div class="file-item" *ngFor="let file of selectedFiles; let i = index">
-              <span class="file-name">{{file.name}}</span>
+              <span class="file-name">{{ file.name }}</span>
               <button type="button" class="btn-remove" (click)="removeFile(i)">✕</button>
             </div>
           </div>

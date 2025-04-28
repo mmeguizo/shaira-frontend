@@ -10,14 +10,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   standalone: true,
   imports: [CommonModule, FontAwesomeModule],
   templateUrl: './equifax-credit-report.component.html',
-  styleUrls: ['./equifax-credit-report.component.css']
+  styleUrls: ['./equifax-credit-report.component.css'],
 })
 export class EquifaxCreditReportComponent {
   faUpLong = faUpLong;
   selectedFile: File | null = null;
 
   constructor(private router: Router) {}
-
 
   onFileSelected(event: any) {
     const files = event.target.files;
@@ -34,7 +33,7 @@ export class EquifaxCreditReportComponent {
   onDrop(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();
-    
+
     if (event.dataTransfer && event.dataTransfer.files.length > 0) {
       this.selectedFile = event.dataTransfer.files[0];
     }

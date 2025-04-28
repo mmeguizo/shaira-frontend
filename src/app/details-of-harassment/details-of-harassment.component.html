@@ -44,61 +44,85 @@
       <h2>Details of Harassment</h2>
       <form [formGroup]="harassmentForm">
         <div formArrayName="agencyForms">
-          <div class="agency-section" *ngFor="let agencyForm of agencyForms.controls; let i = index" [formGroupName]="i">
+          <div
+            class="agency-section"
+            *ngFor="let agencyForm of agencyForms.controls; let i = index"
+            [formGroupName]="i"
+          >
             <div class="agency-header">
               <div class="header-left">
                 <button type="button" class="btn-collapse" (click)="toggleCollapse(i)">
                   <span class="arrow" [class.collapsed]="agencies[i].isCollapsed">▼</span>
                 </button>
-                <h3>Agency #{{i + 1}}</h3>
+                <h3>{{ agencyForm.get('selectedAgency')?.value || 'Agency #' + (i + 1) }}</h3>
               </div>
-              <button *ngIf="i > 0" type="button" class="btn-remove" (click)="removeAgency(i)">✕</button>
+              <button *ngIf="i > 0" type="button" class="btn-remove" (click)="removeAgency(i)">
+                ✕
+              </button>
             </div>
 
             <div class="agency-content" [class.collapsed]="agencies[i].isCollapsed">
-              <!-- Agency Selection -->
-              <div class="form-group">
-                <label>Agency Name</label>
-                <div class="select-container">
-                  <select formControlName="selectedAgency">
-                    <option value="" disabled selected>Select Agency</option>
-                    <option value="agency1">Agency 1</option>
-                    <option value="agency2">Agency 2</option>
-                    <option value="agency3">Agency 3</option>
-                  </select>
+              <!-- Contact Forms Section -->
+              <div formArrayName="contactForms">
+                <div 
+                  *ngFor="let contactForm of getContactForms(i).controls; let j = index"
+                  [formGroupName]="j"
+                  class="contact-form-section"
+                >
+                  <!-- Contact Type -->
+                  <div class="form-group">
+                    <label>Frequency/Details of Contact</label>
+                    <div class="select-container">
+                      <select formControlName="contactType">
+                        <option value="" disabled selected>Select Form of Contact</option>
+                        <option value="phone">Phone Calls</option>
+                        <option value="email">Emails</option>
+                        <option value="letters">Letters</option>
+                        <option value="others">Others</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Contact Details -->
+                  <div class="date-time-container" formArrayName="contactDetails">
+                    <div class="contact-row contact-header">
+                      <div class="contact-count"># of times</div>
+                      <div class="contact-date">Date</div>
+                      <div class="contact-time">Time</div>
+                    </div>
+                    <div
+                      *ngFor="let contact of getContactDetails(i, j).controls; let k = index"
+                      [formGroupName]="k"
+                      class="contact-row"
+                    >
+                      <input type="number" formControlName="count" class="count-input" min="1" />
+                      <input type="date" formControlName="date" class="date-input" />
+                      <div class="time-tags-wrapper">
+                        <div class="time-tags">
+                          <div class="time-tag" *ngFor="let time of contact.get('times')?.value; let t = index">
+                            {{time}} <span class="remove-time" (click)="removeTime(i, j, k, t)">×</span>
+                          </div>
+                        </div>
+                        <input type="time" (change)="addTime($event, i, j, k)" class="time-input" />
+                      </div>
+                      <button
+                        type="button"
+                        class="btn-add"
+                        *ngIf="k === getContactDetails(i, j).length - 1"
+                        (click)="addContactDetail(i, j)"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <!-- Contact Type -->
-              <div class="form-group">
-                <label>Frequency/Details of Contact</label>
-                <div class="select-container">
-                  <select formControlName="contactType">
-                    <option value="" disabled selected>Select Form of Contact</option>
-                    <option value="phone">Phone Calls</option>
-                    <option value="email">Emails</option>
-                    <option value="letters">Letters</option>
-                    <option value="others">Others</option>
-                  </select>
-                </div>
-              </div>
-
-              <!-- Contact Details -->
-              <div class="date-time-container" formArrayName="contactDetails">
-                <div class="contact-row">
-                  <div class="contact-count"># of times</div>
-                  <div class="contact-date">Date</div>
-                  <div class="contact-time">Time</div>
-                </div>
-                <div *ngFor="let contact of getContactDetails(i).controls; let j = index" 
-                     [formGroupName]="j" 
-                     class="contact-row">
-                  <input type="number" formControlName="count" class="count-input" min="1">
-                  <input type="date" formControlName="date" class="date-input">
-                  <input type="time" formControlName="time" class="time-input">
-                  <button type="button" class="btn-add" *ngIf="j === getContactDetails(i).length - 1" 
-                          (click)="addContactDetail(i)">+</button>
-                </div>
+              <!-- Add Another Form of Contact Button -->
+              <div class="btn-container add-contact-form">
+                <button type="button" class="btn btn-secondary" (click)="addContactForm(i)">
+                  Add Another Form of Contact
+                </button>
               </div>
 
               <!-- Threats Section -->
@@ -106,27 +130,41 @@
                 <label>Details of Any Threats or Demands Made by the Agency</label>
                 <div class="checkbox-group">
                   <div class="checkbox-option">
-                    <input type="checkbox" [id]="'threat1-' + i" formControlName="threatToSue">
+                    <input type="checkbox" [id]="'threat1-' + i" formControlName="threatToSue" />
                     <label [for]="'threat1-' + i">Did they threaten to sue you?</label>
                   </div>
                   <div class="checkbox-option">
-                    <input type="checkbox" [id]="'threat2-' + i" formControlName="threatToTakeHome">
+                    <input
+                      type="checkbox"
+                      [id]="'threat2-' + i"
+                      formControlName="threatToTakeHome"
+                    />
                     <label [for]="'threat2-' + i">Did they threaten to take away your home?</label>
                   </div>
                   <div class="checkbox-option">
-                    <input type="checkbox" [id]="'threat3-' + i" formControlName="threatWithSheriff">
-                    <label [for]="'threat3-' + i">Did they threaten you with the sheriff or judgments?</label>
+                    <input
+                      type="checkbox"
+                      [id]="'threat3-' + i"
+                      formControlName="threatWithSheriff"
+                    />
+                    <label [for]="'threat3-' + i"
+                      >Did they threaten you with the sheriff or judgments?</label
+                    >
                   </div>
                   <div class="checkbox-option">
-                    <input type="checkbox" [id]="'otherThreats-' + i" formControlName="otherThreats">
+                    <input
+                      type="checkbox"
+                      [id]="'otherThreats-' + i"
+                      formControlName="otherThreats"
+                    />
                     <label [for]="'otherThreats-' + i">Others</label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       *ngIf="agencyForm.get('otherThreats')?.value"
                       formControlName="otherThreatsDetails"
                       placeholder="Please Specify"
                       class="other-input"
-                    >
+                    />
                   </div>
                 </div>
               </div>
@@ -135,11 +173,11 @@
         </div>
 
         <!-- Add Another Form Button -->
-        <div class="btn-container">
+        <!-- <div class="btn-container">
           <button type="button" class="btn btn-secondary" (click)="addAnotherAgency()">
             Add Another Form of Contact
           </button>
-        </div>
+        </div> -->
 
         <!-- Navigation Buttons -->
         <div class="btn-navigation">

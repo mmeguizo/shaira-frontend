@@ -361,19 +361,19 @@ select {
 
 /* Remove these navigation-related styles */
 .btn-navigation {
-/* Remove this block */
+  /* Remove this block */
 }
 
 .btn-back {
-/* Remove this block */
+  /* Remove this block */
 }
 
 .btn-primary {
-/* Remove this block */
+  /* Remove this block */
 }
 
 .icon {
-/* Remove this block if it's only used for navigation */
+  /* Remove this block if it's only used for navigation */
 }
 
 /* Keep the existing .btn-container styles for the current navigation */

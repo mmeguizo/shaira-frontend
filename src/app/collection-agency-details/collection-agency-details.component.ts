@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ReactiveFormsModule,FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FormDataService } from '../services/form-data.service';
 @Component({
   selector: 'app-collection-agency-details',
   standalone: true,
@@ -17,7 +18,7 @@ collectionForm!: FormGroup;
   contactDate: string = '';
   private _contactDatesArray!: FormArray; // 
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private formDataService: FormDataService) {
     
     this.collectionForm = this.fb.group({
       agencyName: [''],
@@ -104,14 +105,23 @@ collectionForm!: FormGroup;
     this.router.navigate(['/equifax-credit-report']);
   }
 
+  // Update the navigateNext method
   navigateNext() {
+    console.log('navigating next')
+    this.formDataService.setAgencyData({
+      agencyName: this.collectionForm.get('agencyName')?.value,
+      // Add any other fields you want to pass
+    });
     this.router.navigate(['/details-of-harrassment']);
-
+    
     // if (this.collectionForm.valid) {
-    //   this.router.navigate(['/harassment-details']);
-    // } else {
-    //   // Mark all fields as touched to trigger validation messages
-    //   this.markFormGroupTouched(this.collectionForm);
+    //   // Save the agency data to the service
+    //   this.formDataService.setAgencyData({
+    //     agencyName: this.collectionForm.get('agencyName')?.value,
+    //     // Add any other fields you want to pass
+    //   });
+      
+    //   this.router.navigate(['/details-of-harassment']);
     // }
   }
 
