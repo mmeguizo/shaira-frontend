@@ -331,3 +331,46 @@ select {
   width: 100%;
   box-sizing: border-box;
 }
+
+.form-section-content {
+  max-width: 600px;
+  /* margin: 0 auto; */
+  width: 100%;
+}
+
+.form-row.centered {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.form-group.full-width {
+  width: 100%;
+}
+
+.form-group.full-width input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.form-group.full-width input:focus {
+  border-color: #1e3a5f;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(30, 58, 95, 0.1);
+}
+
+@media (max-width: 768px) {
+  .form-section-content {
+    padding: 0 10px;
+  }
+
+  .form-group.full-width input {
+    width: 80%;
+  
+  }
+}
